@@ -49,14 +49,14 @@ import torch
 from torch import nn
 from torchvision.models import vgg16
 
-"""
-    Extracting content representation using pretrained vgg-16 upto conv4_2
-    ---
-    ### Param
-    - img: Content img `torch.Tensor`
-"""
 class ContentExtractor(nn.Module):
-    def __init__(self, img:torch.Tensor):
+    """
+        Extracting content representation using pretrained vgg-16 upto conv4_2
+        ---
+        ### Param
+        - img: Content img `torch.Tensor`
+    """
+    def __init__(self):
         super().__init__()
         model = vgg16(pretrained = True)
         layers = [layer for layer in model.modules()]
@@ -68,10 +68,19 @@ class ContentExtractor(nn.Module):
             p.requires_grad = False
     
     def forward(self, x):
+        if x.dim() == 3:
+            x = x[None, :, :, :]
         return self.convs(x)
 
+
 class StyleExtractor(nn.Module):
-    def __init__(self, img):
+    """
+        Extracting style representation using pretrained vgg-16 using forward
+        ---
+        ### Param
+        - img: Content img `torch.Tensor`
+    """
+    def __init__(self):
         super().__init__()
         model = vgg16(pretrained = True)
         for p in model.parameters():    # parameter in the Net itself requires no grad 
@@ -98,6 +107,8 @@ class StyleExtractor(nn.Module):
         )
 
     def forward(self, x):
+        if x.dim() == 3:
+            x = x[None, :, :, :]
         matrices = []
         x = self.conv1(x)
         gram = StyleExtractor.computeGramMatrix(x)
@@ -126,7 +137,7 @@ class StyleExtractor(nn.Module):
     def computeGramMatrix(x):
         flat = x.view(x.shape[1], -1)
         N, M = flat.shape
-        return (N, M, x @ x.T)
+        return (N, M, flat @ flat.T)
 
 
         

@@ -19,7 +19,7 @@ class StyleLoss(nn.Module):
         for (Nx, Mx, gmx), (Ny, My, gmy) in zip(x, y):
             e_mat = (gmx - gmy) ** 2
             err = torch.sum(e_mat)
-            err /= (4. * Nx * Ny * Mx * My)
+            err /= (Nx * Mx)
             loss += self.w * err
         return loss
 

@@ -135,7 +135,7 @@ class StyleExtractor(nn.Module):
     """
     @staticmethod
     def computeGramMatrix(x):
-        flat = x.view(x.shape[1], -1)
+        flat = x.view(x.shape[1], -1).clone()
         N, M = flat.shape
         return (N, M, flat @ flat.T)
 

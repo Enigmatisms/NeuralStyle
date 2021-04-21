@@ -59,4 +59,13 @@ python3 -m pip install -r requirements.py
 
 ​		To find out.
 
+---
+
+### Results
+
+- CPU training is tooooooo slow. Took me 2+ hours for 800 iterations. (i5-8250U 8th Gen @ 1.60Hz)
+
+| <img src="./asset/star.jpg" style="zoom:80%;" /> | ![](./content/content.jpg) | ![](./imgs/G_801.jpg)  |
+| :----------------------------------------------: | :------------------------: | :--------------------: |
+|                      Style                       |          Content           | Output(800 Iterations) |
 

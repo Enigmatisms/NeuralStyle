@@ -11,7 +11,7 @@
 
 ​		Make sure to have Pytorch / Tensorboard on your device, CUDA is available too yet I failed to use it (GPU memory not enough, yet API is good to go). I am currently using Pytorch 1.7.0 + CU101.
 
-​		On Init, it might requires you to download pretrained VGG-19 network, which requires network connection. 
+​		On Init, it might require you to download pretrained VGG-19 network, which requires network connection. 
 
 ---
 
@@ -67,5 +67,5 @@ python3 -m pip install -r requirements.py
 
 | <img src="./asset/star.jpg" style="zoom:80%;" /> | ![](./content/content.jpg) | ![](./imgs/G_801.jpg)  |
 | :----------------------------------------------: | :------------------------: | :--------------------: |
-|                      Style                       |          Content           | Output(800 Iterations) |
+|                      Style                       |          Content           | Output (800 Iterations) |
 

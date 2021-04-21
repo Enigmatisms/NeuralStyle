@@ -24,12 +24,12 @@ from lossTerm import *
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--alpha", type = float, default = 5e-6, help = "Ratio of content loss in the total loss")
-    parser.add_argument("--epoches", type = int, default = 400, help = "Training lasts for . epoches (for LBFGS)")
-    parser.add_argument("--max_iter", type = int, default = 10, help = "LBFGS max iteration number")
+    parser.add_argument("--alpha", type = float, default = 1e-3, help = "Ratio of content loss in the total loss")
+    parser.add_argument("--epoches", type = int, default = 40, help = "Training lasts for . epoches (for LBFGS)")
+    parser.add_argument("--max_iter", type = int, default = 20, help = "LBFGS max iteration number")
     parser.add_argument("--save_time", type = int, default = 20, help = "Save image every <save_time> epoches")
     parser.add_argument("-d", "--del_dir", action = "store_true", help = "Delete dir ./logs and start new tensorboard records")
-    parser.add_argument("-g", "--gray", default = False, action = "store_true", help = "Using grayscale image as initialization for generated image")
+    parser.add_argument("-g", "--gray", default = True, action = "store_true", help = "Using grayscale image as initialization for generated image")
     parser.add_argument("-c", "--cuda", default = False, action = "store_true", help = "Use CUDA to speed up training")
     args = parser.parse_args()
 
@@ -83,21 +83,25 @@ if __name__ == "__main__":
 
     style_gram = sext(style)
     content = cext(img)
-    optimizer = optim.Adam([gen, ], lr = 5e-2)
-    for epoch in range(epoches):
-        gen_c = cext(gen)
-        gen_s = sext(gen)
-        style_loss = style_loss_f(gen_s, style_gram)
-        content_loss = content_loss_f(gen_c, content)
-        loss = alpha * content_loss + (1 - alpha) * style_loss
-        writer.add_scalar('Loss/Total Loss', loss, epoch)
-        writer.add_scalar('Loss/Content loss', content_loss, epoch)
-        writer.add_scalar('Loss/Style loss', style_loss, epoch)
-        print("Training epoch: %3d / %d \tloss: %.6f"%(epoch, epoches, loss))
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-        if (epoch % save_time) == 0:
-            save_image(gen.detach().clamp_(0, 1), "..\\imgs\\G_%d.jpg"%(epoch + 1), 1)
+    optimizer = optim.LBFGS([gen, ], lr = 0.1, max_iter = max_iter)
+    epoch = 0
+    for i in range(epoches):
+        def closure():
+            global epoch
+            gen_c = cext(gen)
+            gen_s = sext(gen)
+            style_loss = style_loss_f(gen_s, style_gram)
+            content_loss = content_loss_f(gen_c, content)
+            loss = alpha * content_loss + (1 - alpha) * style_loss
+            writer.add_scalar('Loss/Total Loss', loss, epoch)
+            writer.add_scalar('Loss/Content loss', content_loss, epoch)
+            writer.add_scalar('Loss/Style loss', style_loss, epoch)
+            print("Training epoch: %3d / %d \tloss: %.6f"%(epoch, epoches * max_iter, loss))
+            optimizer.zero_grad()
+            loss.backward()
+            epoch += 1
+            return loss
+        optimizer.step(closure)
+        save_image(gen.detach().clamp_(0, 1), "..\\imgs\\G_%d.jpg"%(epoch + 1), 1)
     writer.close()
     print("Output completed.")

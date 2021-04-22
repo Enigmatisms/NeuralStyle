@@ -71,7 +71,7 @@ Therefore, parameter images change like this (Initialized with grayscale image).
 
 | ![](imgs/G_star_71.jpg)  |  ![](imgs/G_star_221.jpg)   |  ![](imgs/G_star_481.jpg)   |
 | :----------------------: | :-------------------------: | :-------------------------: |
-| ![](imgs/G_chaos_11.jpg) | ![](README/G_chaos_181.jpg) | ![](README/G_chaos_241.jpg) |
+| ![](imgs/G_chaos_11.jpg) | ![](imgs/G_chaos_181.jpg) | ![](imgs/G_chaos_241.jpg) |
 |     First few epochs     | Exploded, for 2th row image |          Recovered          |
 
 ---

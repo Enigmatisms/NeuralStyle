@@ -11,7 +11,7 @@
 
 ​		Make sure to have Pytorch / Tensorboard on your device, CUDA is available too yet I failed to use it (GPU memory not enough, yet API is good to go). I am currently using Pytorch 1.7.0 + CU101.
 
-​		On Init, it might requires you to download pretrained VGG-19 network, which requires network connection. 
+​		On Init, it might require you to download pretrained VGG-19 network, which requires network connection. 
 
 ---
 
@@ -86,3 +86,9 @@ Therefore, parameter images changes like this (Initialized with grayscale image)
 |                      Style                       |          Content           |   Output(800 Iterations)   |
 
 - I've also done the style transfer of Van Gogh's self portrait for my dad, which is not appropriate to display, but worked.
+
+---
+
+### Possible TODOs
+
+- [ ] Try adding InstanceNorm into VGG-19 ? Useful ? Meaningful ?

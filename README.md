@@ -61,11 +61,28 @@ python3 -m pip install -r requirements.py
 
 ---
 
+### Training Process
+
+- Something strange happened. Loss exploded twice (but recovered.). Tensorboard graphs:
+
+![](imgs/training.JPG)
+
+Therefore, parameter images changes like this (Initialized with grayscale image).
+
+| ![](imgs/G_star_71.jpg)  |  ![](imgs/G_star_221.jpg)   |  ![](imgs/G_star_481.jpg)   |
+| :----------------------: | :-------------------------: | :-------------------------: |
+| ![](imgs/G_chaos_11.jpg) | ![](README/G_chaos_181.jpg) | ![](README/G_chaos_241.jpg) |
+|     First few epochs     | Exploded, for 2th row image |          Recovered          |
+
+---
+
 ### Results
 
-- CPU training is tooooooo slow. Took me 2+ hours for 800 iterations. (i5-8250U 8th Gen @ 1.60Hz)
+- CPU training is tooooooo slow. Took me **<u>2+ hours</u>** for 800 iterations. (i5-8250U 8th Gen @ 1.60Hz)
 
-| <img src="./asset/star.jpg" style="zoom:80%;" /> | ![](./content/content.jpg) | ![](./imgs/G_801.jpg)  |
-| :----------------------------------------------: | :------------------------: | :--------------------: |
-|                      Style                       |          Content           | Output(800 Iterations) |
+| <img src="./asset/star.jpg" style="zoom:80%;" /> | ![](./content/content.jpg) | ![](./imgs/G_star_801.jpg) |
+| :----------------------------------------------: | :------------------------: | :------------------------: |
+| <img src="asset/chaos.jpg" style="zoom:80%;" />  |  ![](content/content.jpg)  | ![](imgs/G_chaos_801.jpg)  |
+|                      Style                       |          Content           |   Output(800 Iterations)   |
 
+- I've also done the style transfer of Van Gogh's self portrait for my dad, which is not appropriate to display, but worked.

@@ -67,7 +67,7 @@ python3 -m pip install -r requirements.py
 
 ![](imgs/training.JPG)
 
-Therefore, parameter images changes like this (Initialized with grayscale image).
+Therefore, parameter images change like this (Initialized with grayscale image).
 
 | ![](imgs/G_star_71.jpg)  |  ![](imgs/G_star_221.jpg)   |  ![](imgs/G_star_481.jpg)   |
 | :----------------------: | :-------------------------: | :-------------------------: |

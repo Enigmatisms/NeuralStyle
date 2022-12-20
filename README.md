@@ -3,7 +3,6 @@
 ​		My own implementation of CVPR 2016 paper: Image Style Transfer Using Convolutional Neural Networks. This work is, I think, simple but elegant (I mean the paper, not my implementation) with good interpretability. 
 
 - CVPR 2016 OpenAccess Link is here: [CVPR 2016 open access](https://openaccess.thecvf.com/content_cvpr_2016/html/Gatys_Image_Style_Transfer_CVPR_2016_paper.html)
-- Personal understanding of this paper [Chinese]: [Blog of Enigmatisms/CNN Style Transfer论文复现](https://enigmatisms.github.io/2021/04/21/CNN-Style-Transfer%E8%AE%BA%E6%96%87%E5%A4%8D%E7%8E%B0/)
 
 ---
 

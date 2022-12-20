@@ -16,7 +16,7 @@ class StyleLoss(nn.Module):
     # compute L2 loss for gram matrix x and gram matrix y
     def forward(self, x, y):
         loss = 0.
-        for (Nx, Mx, gmx), (Ny, My, gmy) in zip(x, y):
+        for (Nx, Mx, gmx), (_, _, gmy) in zip(x, y):
             e_mat = (gmx - gmy) ** 2
             err = torch.sum(e_mat)
             err /= (Nx * Mx)

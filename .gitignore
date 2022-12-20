@@ -1,5 +1,5 @@
 *.*
-
+**/G_new_*
 !requirements.txt
 !*.jpg
 !.env
